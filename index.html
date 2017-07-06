@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <title>狼剩子</title>
   <!-- the docute client styles -->
-  
+    <link rel="icon" href="img/title.jpg" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/title.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="css/docute.css">
     <link rel="stylesheet" href="css/markdown.css">
   <link href="css/index.css" rel="stylesheet" type="text/css" />
@@ -38,7 +39,7 @@
                     background: #219653;
                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                     border-radius: 4px;
-font-family: 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans S Chinese';
+
 font-style: normal;
 font-weight: thin;
 font-size: 24px;
@@ -54,7 +55,7 @@ color: #F2F2F2;
         <p style="padding-top:20px;
                  margin-bottom:6px;
                   padding-bottom:6px;
-                  font-family: 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans S Chinese';
+
                     font-style: normal;
                     font-weight: normal;
                     font-size: 50px;
@@ -63,7 +64,7 @@ color: #F2F2F2;
                     color: #333333;
                     ">@狼剩子</p>
         <p style="/* #靡不有初 鲜克有终# */
-                    font-family: 'Noto Sans CJK SC', 'Source Han Sans CN', 'Noto Sans S Chinese';
+
                     font-style: normal;
                     font-weight: normal;
                     font-size: 12px;
@@ -76,15 +77,15 @@ color: #F2F2F2;
     <div id="button-group">
         <div style="display:flex;">
             <div class="button button-red">关于我</div>
-            <div class="button button-green">Github主页</div>
+            <a class="button button-green" href="https://github.com/Wolf-Tungsten">GitHub主页</a>
         </div>
         <div class="button button-blue">文章目录</div>
-        <div class="button button-yello" router-link="article/improc">Home Page</div>
+        <div class="button button-yello" router-link="homepage">主页</div>
         </div>
     </div>
     <div id="right">
       <div id="app">
-          abc
+          喵喵喵？
       </div>
     </div>
   <!-- load the docute client library -->
@@ -93,10 +94,10 @@ color: #F2F2F2;
   <script>
     docute.init(
         {
-    url: '.',// default
-    // Use files from another source
-   sidebar:false,
-   disableSidebarToggle:true,
+    url: 'https://wolf.myseu.cn/article/',// default
+    home:'https://wolf.myseu.cn/article/homepage.md',
+    sidebar:false,
+    disableSidebarToggle:true,
         }
     )
   </script>
