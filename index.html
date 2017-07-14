@@ -29,7 +29,7 @@
                     top:-60px;                                       
                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                     border-radius: 8px;
-                    "/>
+                    " router-link="/homepage"/>
         <div style="
                     position:absolute;
                     width:70%;
@@ -48,7 +48,7 @@ text-align: center;
 
 color: #F2F2F2;
 
-                    ">Hola~@狼剩子</div>
+                    " router-link="/catalog">Hola~@狼剩子</div>
     </div>
     <div id="sidebar" >
     <div id="icon">
@@ -79,7 +79,7 @@ color: #F2F2F2;
             <div class="button button-red">关于我</div>
             <a class="button button-green" href="https://github.com/Wolf-Tungsten">GitHub主页</a>
         </div>
-        <div class="button button-blue">文章目录</div>
+        <div class="button button-blue" router-link="catalog">文章目录</div>
         <div class="button button-yello" router-link="homepage">主页</div>
         </div>
     </div>
