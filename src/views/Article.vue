@@ -57,8 +57,12 @@ export default {
     let article = res.data.result;
     this.title = article.title;
     let content = article.content;
-    let imgUrls = content.matchAll(/<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g)
-    imgUrls = Array.from(imgUrls, m => m);
+
+    let imgUrls = content.match(/<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g)
+    imgUrls = imgUrls.map(i => {
+      return /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g.exec(i)
+    })
+    //imgUrls = Array.from(imgUrls, m => m);
     let contentComponents = []
     if(imgUrls.length > 0){
       let startPosition = 0
