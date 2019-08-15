@@ -53,8 +53,8 @@ export default {
 }
 .article-title{
   text-align: center;
-  margin-top:30px;
-  margin-bottom:30px;
+  padding-top:30px;
+  margin-bottom:20px;
   font-size:30px;
   color:teal;
   font-weight: bold;
