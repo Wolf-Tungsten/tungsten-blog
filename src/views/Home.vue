@@ -84,7 +84,7 @@ export default {
       this.loading = true
       let columnCode = this.columnCode[this.columnCode.length - 1]
       let res = await axios.get(
-        `http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=${columnCode}&deep=1&page=${this.page}&pagesize=10`);
+        `//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=${columnCode}&deep=1&page=${this.page}&pagesize=10`);
       this.amount = res.data.result.articleAmount
       this.articleList = res.data.result.articleList
       this.loading = false
@@ -98,7 +98,7 @@ export default {
     this.loading = true
     // 获取总栏目树
     let res = await axios.get(
-      "http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/column?code=71F296C6"
+      "//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/column?code=71F296C6"
     );
     this.columnTree = [
       { name: "全部来源", code: res.data.result.code },
@@ -108,7 +108,7 @@ export default {
     this.fetchArticle();
     // 获取置顶文章
     res = await axios.get(
-      "http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=71F296C6&deep=1"
+    "//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=71F296C6&deep=1"
     );
     this.topFixedList = res.data.result.topFixedList;
     this.loading = false

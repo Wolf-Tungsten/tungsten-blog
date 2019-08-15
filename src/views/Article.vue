@@ -29,7 +29,7 @@ export default {
   },
   async created(){
     this.loading = true
-    let res = await axios.get(`http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article?articleCode=${this.$route.params.code}`)
+    let res = await axios.get(`//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article?articleCode=${this.$route.params.code}`)
     if(!res.data.success){
       this.$router.replace({name:'home'})
       return
