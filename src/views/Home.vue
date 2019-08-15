@@ -1,6 +1,6 @@
 <template>
   <div class="tungsten-page">
-    <div class="hidden-sm-and-up" style="font-size:24px;margin-bottom:30px; font-weight:bold;">🐺 狼剩子的博客</div>
+    <div class="hidden-sm-and-up" style="font-size:24px;margin-bottom:30px; font-weight:bold;">🐺 狼剩子的主页</div>
     <div v-if="topFixedList.length > 0" style="margin-bottom: 40px;">
       <div class="tungsten-big-title">精选内容</div>
       <div style="border-top:solid 1px #EBEEF5; margin-top:20px;"></div>
@@ -16,7 +16,7 @@
         ></article-item>
       </div>
     </div>
-    <div>
+    <div v-loading="loading">
       <div class="tungsten-big-title">全部内容</div>
       <el-row style="margin-top:20px;">
         <el-col :xs="16" :sm="6" :md="6" :lg="6" :xl="6">
@@ -52,9 +52,11 @@
         <el-pagination background layout="prev, pager, next" :total="amount"></el-pagination>
       </div>
     </div>
+    <div style="flex-grow:1"></div>
+    <div class="copyright"> © CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
   </div>
 </template>
-
+ 
 <script>
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
@@ -69,7 +71,8 @@ export default {
       articleList: [],
       columnCode: [],
       amount:0,
-      page:1
+      page:1,
+      loading:true
     };
   },
   components: {
@@ -78,11 +81,13 @@ export default {
   },
   methods: {
     async fetchArticle() {
+      this.loading = true
       let columnCode = this.columnCode[this.columnCode.length - 1]
       let res = await axios.get(
         `http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=${columnCode}&deep=1&page=${this.page}&pagesize=10`);
       this.amount = res.data.result.articleAmount
       this.articleList = res.data.result.articleList
+      this.loading = false
     },
     async search(){
       this.page = 1
@@ -90,6 +95,7 @@ export default {
     }
   },
   async created() {
+    this.loading = true
     // 获取总栏目树
     let res = await axios.get(
       "http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/column?code=71F296C6"
@@ -105,6 +111,7 @@ export default {
       "http://wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=71F296C6&deep=1"
     );
     this.topFixedList = res.data.result.topFixedList;
+    this.loading = false
   }
 };
 </script>
@@ -114,9 +121,19 @@ export default {
   text-align: left;
   margin-left: 10px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .tungsten-big-title {
   font-size: 26px;
   color: teal;
+}
+.copyright{
+    justify-self: flex-end;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 14px;
 }
 </style>

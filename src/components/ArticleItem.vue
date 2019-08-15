@@ -1,9 +1,9 @@
 <template>
-  <div class="tungsten-article-item">
+  <div class="tungsten-article-item" @click="gotoArticle">
     <div class="left-part">
       <div class="title"><span class="el-icon-star-on" style="color:orange;" v-if="topFixed"></span>{{title}}</div>
       <div class="abstract">{{abstract}}</div>
-      <div class="lastModifiedTime">{{lastModifiedTimeDisp}} · {{viewCount}} 人浏览</div>
+      <div class="lastModifiedTime">{{lastModifiedTimeDisp}} · {{viewCount}} 次浏览</div>
     </div>
     <div class="right-part hidden-xs-only" v-if="coverUrl" >
       <img class="cover" :src="coverUrl"/>
@@ -13,12 +13,17 @@
 
 <script>
 import moment from 'moment'
-
+import 'moment/locale/zh-cn'
 export default {
     props:['title', 'lastModifiedTime', 'abstract', 'coverUrl', 'viewCount', 'topFixed', 'code'],
     computed:{
       lastModifiedTimeDisp(){
-        return moment(+this.lastModifiedTime).format('YYYY-MM-DD')
+        return moment(+this.lastModifiedTime).fromNow()
+      }
+    },
+    methods:{
+      gotoArticle(){
+        this.$router.push({path:'/article/'+this.code})
       }
     }
 }
