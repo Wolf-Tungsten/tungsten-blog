@@ -11,13 +11,16 @@
               你的BUG像一条恶犬 🐶，撞乱我心弦
             </div>
           </div>
+          <div id="tungsten-music">
+            <music></music>
+          </div>
           <div id="tungsten-brief">
               <div class="tungsten-brief-item">
                 🎓 东南大学计算机科学与技术专业本科生
               </div>
-              <div class="tungsten-brief-item">
+              <!-- <div class="tungsten-brief-item">
                 🐵 东南大学小猴偷米工作室 2018 届站长
-              </div>
+              </div> -->
               <div class="tungsten-brief-item">
                 📭 gaoruihao@wolf-tungsten.com
               </div>
@@ -25,9 +28,7 @@
                 👬 欢迎技术交流
               </div>
           </div>
-          <div id="tungsten-music">
-            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=260 height=86 src="//music.163.com/outchain/player?type=2&id=25706282&auto=1&height=66"></iframe>
-          </div>
+          
         </div>
       </el-aside>
       <el-main style="height:100%">
@@ -38,9 +39,11 @@
 </template>
 
 <script>
+import MusicPlayer from './components/MusicPlayer'
 export default {
   name: 'app',
   components: {
+    'music':MusicPlayer
   }
 }
 </script>
@@ -94,11 +97,19 @@ body{
   text-align: left;
 }
 #tungsten-music{
-  width: 260px;
-  height: 86px;
+  width: 220px;
+  height: 40px;
   border-radius: 8px;
+  padding: 10px;
   overflow: hidden;
   margin-top:20px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+#tungsten-music-inner{
+  margin: -10px;
+  height: 76px;
+  overflow: hidden;
 }
 #tungsten-brief{
   width: 240px;
