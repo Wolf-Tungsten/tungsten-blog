@@ -55,7 +55,7 @@ export default {
   text-align: center;
   padding-top:30px;
   margin-bottom:20px;
-  font-size:30px;
+  font-size:24px;
   color:teal;
   font-weight: bold;
 }
