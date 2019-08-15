@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <el-container style="height:100%">
-      <el-aside style="height:100%; border-right: solid 1px #F2F6FC;"> 
+      <el-aside  class="hidden-xs-only" style="height:100%; border-right: solid 1px #F2F6FC;"> 
         <div id="aside">
           <div id="tungsten-title">@狼剩子</div>
           <iframe src="https://ghbtns.com/github-btn.html?user=wolf-tungsten&type=follow&count=true" frameborder="0" scrolling="0" width="190px" height="20px"></iframe>
           <div id="tungsten-avatar-box">
             <img id="tungsten-avatar" src="./assets/avatar.jpg"/>
             <div id="tungsten-avatar-note">
-              你的BUG像一条恶犬 🐶，撞乱我心弦
+              你的 BUG 像一条恶犬 🐶，撞乱我心弦
             </div>
           </div>
           <div id="tungsten-music">
@@ -98,7 +98,7 @@ body{
 }
 #tungsten-music{
   width: 220px;
-  height: 40px;
+  height: 36px;
   border-radius: 8px;
   padding: 10px;
   overflow: hidden;
