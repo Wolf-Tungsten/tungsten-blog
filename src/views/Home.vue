@@ -135,5 +135,6 @@ export default {
     margin-top: 30px;
     padding-bottom: 30px;
     font-size: 14px;
+    color:#909399;
 }
 </style>

@@ -8642,3 +8642,13 @@ yorkie@^2.0.0:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
+
+zoom@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/zoom/download/zoom-0.0.2.tgz#27f645dceff3abfb5d28bbcc2545158f0716b1bc"
+  integrity sha1-J/ZF3O/zq/tdKLvMJUUVjwcWsbw=
+
+zooming@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/zooming/download/zooming-2.1.1.tgz#3e05006b4e10335235ca626244d053d90a9c7e72"
+  integrity sha1-PgUAa04QM1I1ymJiRNBT2QqcfnI=
