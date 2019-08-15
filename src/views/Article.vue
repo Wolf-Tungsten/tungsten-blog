@@ -14,7 +14,7 @@
     <div v-for="item in contentComponents" :key="item.content">
       <div v-html="item.content" v-if="item.type == 'text'"></div>
       <figure v-else style="text-align:center;">
-      <el-image style="width:80%; box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);" :src="item.content" :preview-src-list="imageList">(点击查看大图)</el-image>
+      <el-image style="width:80%; box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); border-radius:8px; overflow-hidden;" :src="item.content" :preview-src-list="imageList">(点击查看大图)</el-image>
       <figcaption style="font-size:14px; color:#909399;margin-top:10px;">（点击查看大图）</figcaption>
       </figure>
     </div>
