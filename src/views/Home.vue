@@ -133,7 +133,7 @@ export default {
     justify-self: flex-end;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
     font-size: 14px;
 }
 </style>
