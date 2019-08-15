@@ -59,12 +59,14 @@ export default {
     let content = article.content;
 
     let imgUrls = content.match(/<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g)
-    imgUrls = imgUrls.map(i => {
-      return /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g.exec(i)
-    })
+    if(imgUrls){
+      imgUrls = imgUrls.map(i => {
+        return /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g.exec(i)
+      })
+    }
     //imgUrls = Array.from(imgUrls, m => m);
     let contentComponents = []
-    if(imgUrls.length > 0){
+    if(imgUrls && imgUrls.length > 0){
       let startPosition = 0
       for(let img of imgUrls){
         let endPosition = content.indexOf(img[0])
@@ -83,6 +85,13 @@ export default {
           type:'text',
           content:content.slice(startPosition, content.length)
         })
+    } else {
+      contentComponents = [
+        {
+          type:'text',
+          content
+        }
+      ]
     }
     this.contentComponents = contentComponents
     this.content = content

@@ -34,6 +34,8 @@ export default {
   display:flex;
   align-items: stretch;
   border-bottom: solid 1px #EBEEF5;
+  padding-left: 8px;
+  padding-right: 8px;
   .left-part{
     display: flex;
     flex-direction: column;

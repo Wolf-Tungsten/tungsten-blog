@@ -1,6 +1,9 @@
 <template>
   <div class="tungsten-page">
-    <div class="hidden-sm-and-up" style="font-size:24px;margin-bottom:30px; font-weight:bold;">🐺 狼剩子的主页</div>
+    <div
+      class="hidden-sm-and-up"
+      style="font-size:24px;margin-bottom:30px; font-weight:bold;"
+    >🐺 狼剩子的主页</div>
     <div v-if="topFixedList.length > 0" style="margin-bottom: 40px;">
       <div class="tungsten-big-title">精选内容</div>
       <div style="border-top:solid 1px #EBEEF5; margin-top:20px;"></div>
@@ -28,32 +31,33 @@
             v-model="columnCode"
           ></el-cascader>
         </el-col>
-        <el-col :xs=2 :sm="6" :md="6" :lg="6" :xl="6" style="margin-left:10px;">
+        <el-col :xs="2" :sm="6" :md="6" :lg="6" :xl="6" style="margin-left:10px;">
           <el-button @click="search" type="primary">检索文章</el-button>
         </el-col>
       </el-row>
       <div style="border-top:solid 1px #EBEEF5; margin-top:30px;"></div>
       <div v-if="articleList.length > 0">
-      <div v-for="item in articleList" :key="item.code">
-        <article-item
-          :title="item.title"
-          :abstract="item.abstract"
-          :last-modified-time="item.lastModifiedTime"
-          :cover-url="item.coverUrl"
-          :view-count="item.viewCount"
-          :code="item.code"
-        ></article-item>
+        <div v-for="item in articleList" :key="item.code">
+          <article-item
+            :title="item.title"
+            :abstract="item.abstract"
+            :last-modified-time="item.lastModifiedTime"
+            :cover-url="item.coverUrl"
+            :view-count="item.viewCount"
+            :code="item.code"
+          ></article-item>
+        </div>
       </div>
-      </div>
-      <div v-else style="margin-top:20px;text-align:center;color:#C0C4CC;padding-bottom:20px;border-bottom:solid 1px #EBEEF5;">
-        暂无内容，敬请期待
-      </div>
+      <div
+        v-else
+        style="margin-top:20px;text-align:center;color:#C0C4CC;padding-bottom:20px;border-bottom:solid 1px #EBEEF5;"
+      >暂无内容，敬请期待</div>
       <div style="text-align:center;margin-top:30px;">
         <el-pagination background layout="prev, pager, next" :total="amount"></el-pagination>
       </div>
     </div>
     <div style="flex-grow:1"></div>
-    <div class="copyright"> © CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
+    <div class="copyright">© CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
   </div>
 </template>
  
@@ -70,9 +74,9 @@ export default {
       topFixedList: [],
       articleList: [],
       columnCode: [],
-      amount:0,
-      page:1,
-      loading:true
+      amount: 0,
+      page: 1,
+      loading: true
     };
   },
   components: {
@@ -81,21 +85,22 @@ export default {
   },
   methods: {
     async fetchArticle() {
-      this.loading = true
-      let columnCode = this.columnCode[this.columnCode.length - 1]
+      this.loading = true;
+      let columnCode = this.columnCode[this.columnCode.length - 1];
       let res = await axios.get(
-        `//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=${columnCode}&deep=1&page=${this.page}&pagesize=10`);
-      this.amount = res.data.result.articleAmount
-      this.articleList = res.data.result.articleList
-      this.loading = false
+        `//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=${columnCode}&deep=1&page=${this.page}&pagesize=10`
+      );
+      this.amount = res.data.result.articleAmount;
+      this.articleList = res.data.result.articleList;
+      this.loading = false;
     },
-    async search(){
-      this.page = 1
-      this.fetchArticle()
+    async search() {
+      this.page = 1;
+      this.fetchArticle();
     }
   },
   async created() {
-    this.loading = true
+    this.loading = true;
     // 获取总栏目树
     let res = await axios.get(
       "//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/column?code=71F296C6"
@@ -108,10 +113,10 @@ export default {
     this.fetchArticle();
     // 获取置顶文章
     res = await axios.get(
-    "//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=71F296C6&deep=1"
+      "//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article-list?columnCode=71F296C6&deep=1"
     );
     this.topFixedList = res.data.result.topFixedList;
-    this.loading = false
+    this.loading = false;
   }
 };
 </script>
@@ -125,16 +130,21 @@ export default {
   flex-direction: column;
   height: 100%;
 }
+@media screen and (max-width: 600px) {
+  .tungsten-page {
+    margin-left: 0px;
+  }
+}
 .tungsten-big-title {
   font-size: 26px;
   color: teal;
 }
-.copyright{
-    justify-self: flex-end;
-    text-align: center;
-    margin-top: 30px;
-    padding-bottom: 30px;
-    font-size: 14px;
-    color:#909399;
+.copyright {
+  justify-self: flex-end;
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  font-size: 14px;
+  color: #909399;
 }
 </style>
