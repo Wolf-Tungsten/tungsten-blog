@@ -1,6 +1,12 @@
 <template>
   <div style="display:flex;flex-direction:column;height:100%;">
-    <el-page-header @back="goBack" content="查看内容" title="狼剩子的主页" v-loading="loading"></el-page-header>
+    <div>
+    <div style="display:flex; align-items:center; margin-top: 10px;">
+      <i class="el-icon-back" @click="goBack"></i>
+      <div style="font-size:14px;font-weight:bold;padding-right:10px;border-right:solid 1px #EBEEF5;" @click="goBack"> 🐺 狼剩子的主页</div>
+      <div style="padding-left:10px;">内容浏览</div>
+    </div>
+    </div>
     <div class="article-title">{{title}}</div>
     <div v-html="content" class="article-content"></div>
     <div style="flex-grow:1"></div>
@@ -23,12 +29,13 @@ export default {
      try{
        this.$router.go(-1)
      } catch(e){
-       this.$replace({name:'home'})
+       this.$router.replace({name:'home'})
      }
    }
   },
   async created(){
     this.loading = true
+    console.log(this.$route)
     let res = await axios.get(`//wolf-tungsten.com/tungsten-blog-srv/public-api/v1/article?articleCode=${this.$route.params.code}`)
     if(!res.data.success){
       this.$router.replace({name:'home'})
@@ -54,7 +61,7 @@ export default {
 .article-title{
   text-align: center;
   padding-top:30px;
-  margin-bottom:20px;
+  margin-bottom:10px;
   font-size:24px;
   color:teal;
   font-weight: bold;
@@ -67,6 +74,6 @@ export default {
 @media screen and (max-width: 600px) {
   .article-content{
   margin: 0 5px 5px 5px;
-}
+  }
 }
 </style>
