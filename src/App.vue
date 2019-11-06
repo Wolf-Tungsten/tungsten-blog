@@ -27,6 +27,9 @@
               <div class="tungsten-brief-item">
                 👬 欢迎技术交流
               </div>
+              <div class="tungsten-brief-item">
+                🔗 <a style="text-decoration:none;color:#2c3e50" href="https://rikumi.github.io">去 RKM 家串门</a> 
+              </div>
           </div>
           
         </div>
@@ -113,6 +116,7 @@ body{
 #tungsten-brief{
   width: 240px;
   margin-top: 30px; 
+  margin-bottom: 30px;
   border-top: solid 1px #EBEEF5;
 }
 .tungsten-brief-item{

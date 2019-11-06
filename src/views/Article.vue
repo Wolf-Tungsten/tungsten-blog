@@ -14,8 +14,12 @@
     <div v-for="item in contentComponents" :key="item.content">
       <div v-html="item.content" v-if="item.type == 'text'"></div>
       <figure v-else style="text-align:center;">
-      <el-image style="width:90%; box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); border-radius:8px; overflow-hidden;" :src="item.content" :preview-src-list="[item.content]">(点击查看大图)</el-image>
-      <figcaption style="font-size:14px; color:#909399;margin-top:10px;">（点击查看大图）</figcaption>
+        <el-image
+          style="width:90%; box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); border-radius:8px; overflow-hidden;"
+          :src="item.content"
+          :preview-src-list="[item.content]"
+        >(点击查看大图)</el-image>
+        <figcaption style="font-size:14px; color:#909399;margin-top:10px;">（点击查看大图）</figcaption>
       </figure>
     </div>
     <div style="flex-grow:1"></div>
@@ -25,6 +29,8 @@
 
 <script>
 import axios from "axios";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 export default {
   data() {
     return {
@@ -32,7 +38,7 @@ export default {
       content: "",
       loading: false,
       contentComponents: [],
-      imageList:[]
+      imageList: []
     };
   },
   methods: {
@@ -57,49 +63,62 @@ export default {
     let article = res.data.result;
     this.title = article.title;
     let content = article.content;
-
-    let imgUrls = content.match(/<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g)
-    if(imgUrls){
+    // 支持代码高亮
+    content = content.replace('class="nohighlight"', "");
+    let imgUrls = content.match(
+      /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g
+    );
+    if (imgUrls) {
       imgUrls = imgUrls.map(i => {
-        return /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g.exec(i)
-      })
+        return /<figure class="image"><img src="(https:\/\/cdn\.wolf-tungsten\.com\/tungsten-blog-public\/[0-9a-z-]+\.[pngje]*)">.*?<\/figure>/g.exec(
+          i
+        );
+      });
     }
     //imgUrls = Array.from(imgUrls, m => m);
-    let contentComponents = []
-    if(imgUrls && imgUrls.length > 0){
-      let startPosition = 0
-      for(let img of imgUrls){
-        let endPosition = content.indexOf(img[0])
+    let contentComponents = [];
+    if (imgUrls && imgUrls.length > 0) {
+      let startPosition = 0;
+      for (let img of imgUrls) {
+        let endPosition = content.indexOf(img[0]);
         contentComponents.push({
-          type:'text',
-          content:content.slice(startPosition, endPosition)
-        })
+          type: "text",
+          content: content.slice(startPosition, endPosition)
+        });
         contentComponents.push({
-          type:'image',
-          content:img[1]
-        })
-        this.imageList.push(img[1])
-        startPosition = endPosition + img[0].length
+          type: "image",
+          content: img[1]
+        });
+        this.imageList.push(img[1]);
+        startPosition = endPosition + img[0].length;
       }
       contentComponents.push({
-          type:'text',
-          content:content.slice(startPosition, content.length)
-        })
+        type: "text",
+        content: content.slice(startPosition, content.length)
+      });
     } else {
       contentComponents = [
         {
-          type:'text',
+          type: "text",
           content
         }
-      ]
+      ];
     }
-    this.contentComponents = contentComponents
-    this.content = content
+    // 代码高亮
+
+    this.contentComponents = contentComponents;
+    this.content = content;
     this.loading = false;
+    setTimeout(() => {
+      document.querySelectorAll("pre").forEach(block => {
+        hljs.highlightBlock(block);
+      });
+      document.querySelectorAll("code").forEach(block => {
+        hljs.highlightBlock(block);
+      });
+    }, 1000);
   },
-  mounted() {
-    
-  }
+  mounted() {}
 };
 </script>
 

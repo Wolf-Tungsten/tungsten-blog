@@ -19,6 +19,7 @@
         ></article-item>
       </div>
     </div>
+    <!-- 全部内容段 -->
     <div v-loading="loading">
       <div class="tungsten-big-title">全部内容</div>
       <el-row style="margin-top:20px;">
@@ -56,6 +57,7 @@
         <el-pagination background layout="prev, pager, next" :total="amount"></el-pagination>
       </div>
     </div>
+    <!-- 友链 -->
     <div style="flex-grow:1"></div>
     <div class="copyright">© CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
   </div>

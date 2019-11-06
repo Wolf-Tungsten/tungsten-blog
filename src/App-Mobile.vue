@@ -9,7 +9,6 @@ import MusicPlayer from './components/MusicPlayer'
 export default {
   name: 'app',
   components: {
-    'music':MusicPlayer
   }
 }
 </script>
