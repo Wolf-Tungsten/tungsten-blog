@@ -59,7 +59,7 @@
     </div>
     <!-- 友链 -->
     <div style="flex-grow:1"></div>
-    <div class="copyright">© CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
+    <div class="copyright" @click="icp">© CopyRight 2016-2019, Wolf-Tungsten. All Rights Reserved 蒙ICP备18001061号</div>
   </div>
 </template>
  
@@ -99,6 +99,9 @@ export default {
     async search() {
       this.page = 1;
       this.fetchArticle();
+    }, 
+    icp() {
+      window.location = 'http://beian.miit.gov.cn/publish/query/indexFirst.action'
     }
   },
   async created() {
